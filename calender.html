@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>IS THAT TOMORROW?</title>
+    <link rel="StyleSheet" type="text/css" href="Style.css" />
+    <style>
+        table {
+            width: 100%;
+            border-bottom: 1px solid #f7F3eb;
+            border-top: 1px solid #f7f3eb;
+        }
+
+        td, tr {
+            font-size: 70px;
+            font: robot;
+        }
+
+        onclick {
+            border: 1px solid #f7f3eb;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+    </style>
+  
+    
+    <script type="text/javascript">
+        var today = new Date();
+        var date = new Date();
+        function prevCalendar() {
+            today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+            buildCalendar();
+        }
+
+        function nextCalendar() {
+            today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+            buildCalendar();
+        }
+        function buildCalendar() {//현재 달 달력 만들기
+            var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+            var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+            var tbCalendar = document.getElementById("calendar");
+
+            var tbCalendarYM = document.getElementById("tbCalendarYM");
+
+            tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월";
+
+
+            while (tbCalendar.rows.length > 1) {
+
+                tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+
+            }
+            var row = null;
+            row = tbCalendar.insertRow();
+
+            var cnt = 0;
+
+            for (i = 0; i < doMonth.getDay(); i++) {
+
+                cell = row.insertCell();
+                cnt = cnt + 1;
+            }
+            /*달력 출력*/
+            for (i = 1; i <= lastDate.getDate(); i++) {
+
+                cell = row.insertCell();
+                cell.innerHTML ="<align='center'>"+i;
+                
+                cnt = cnt + 1;
+                if (cnt % 7 == 1) {
+                    cell.innerHTML ="<font color=blue>"+i
+
+                }
+                if (cnt % 7 == 0) {
+                    cell.innerHTML = "<font color=blue>" + i
+
+                    row = calendar.insertRow();
+
+                }
+                /*오늘의 날짜에 노란색 칠하기*/
+                if (today.getFullYear() == date.getFullYear()
+                    && today.getMonth() == date.getMonth()
+                    && i == date.getDate()) {
+
+                    cell.bgColor = "#FAF58C";//셀의 배경색을 노랑으로
+                }
+            }
+        }
+        function onclickCalendar() {
+            document.getElementById("day").style.background = "green"
+
+        }
+        function cell_click() {
+            var str = "스케줄을 입력하시오";
+            var schedule;
+            schedule = prompt('무슨일이야', str);
+
+            alter("입력한 스케줄은 ==" + schedule + "입니다.");
+
+        }
+
+    </script>
+</head>
+<body>
+   <div class="Title">IS THAT TOMORROW?</div>
+    
+    <div class="Login">
+        <h4>Log In</h4>
+        <form action="#">
+            아이디
+            <input type="text" /><br />
+            패스워드
+            <input type="password" /><br />
+            <input type="submit" value="로그인" />
+            <input type="reset" value="초기화 " /><br />
+            <a href="register.html" target="_blank" id="register">회원가입</a>
+            <a href="#" id="forgot">비밀번호분실</a>
+
+        </form>
+    </div>
+    <nav>
+    <ul class="menu">
+        <li><a href="calender">스케줄 달력</a></li>
+        <li><a href="#">내 할일</a></li>
+        
+    </ul>
+        </nav>
+    <style>
+        nav{
+            width:200px;
+            background-color:#eee;
+            border-right:1px solid #ddd;
+            position:fixed;
+            height:100%
+}
+        h1{font-size:18px; padding:20px;}
+        .menu{}
+        .menu li{}
+        .menu li a{
+  line-height:30px;
+   height:50px;
+   display:block;
+   padding:0 20px;
+   font-size:22px;
+   
+   color:#555;
+}
+        .menu li a:hover{ background-color:darkblue; color:white;}
+        
+    </style>
+    <div class="box1 cal">
+       
+        <div class="calt">
+
+            <div style="float:left">
+                <label onclick="prevCalendar()">
+                <
+                </label>
+            </div>
+
+            <div align="center" style="position:relative" id="tbCalendarYM">
+             yyyy년mm월
+            </div>
+            <div style="float:right" >
+                <label onclick="nextCalendar()">
+                    >
+                </label>
+            </div>
+        
+        </div>
+
+        <!--div id="first">
+        <div id="table">
+
+        </div>
+    </div>-->
+
+        <table id="calendar" text-align="center" width:100% style="border-bottom: 1px solid #f7F3eb"
+               border-top:"1px solid #f7f3eb">
+            <tr>
+                <td align="center" onclick="cell_click()"><font color="red">일</td>
+                <td align="center" onclick="cell_click()">월</td>
+                <td  align="center" onclick="cell_click()">화</td>
+                <td  align="center" onclick="cell_click()">수</td>
+                <td  align="center" onclick="cell_click()">목</td>
+                <td  align="center" onclick="cell_click()">금</td>
+                <td align="center"  onclick="cell_click()"><font color="blue">토</td>
+            </tr>
+        </table>
+    </div>
+    <script language="javascript" type="text/javascript">
+        buildCalendar();
+    </script>
+  
+</body>
+</html>
